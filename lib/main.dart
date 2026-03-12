@@ -1,3 +1,4 @@
+import 'package:al_masar_day_8/screens/plash_screen.dart';
 import 'package:al_masar_day_8/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class ALMasarApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(),
+      home: PlashScreen(),
     );
   }
 }
