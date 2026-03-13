@@ -1,6 +1,7 @@
-import 'package:al_masar_day_8/screens/plash_screen.dart';
+import 'package:al_masar_day_8/screens/splash_screen.dart';
 import 'package:al_masar_day_8/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(const ALMasarApp());
@@ -13,7 +14,15 @@ class ALMasarApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PlashScreen(),
+      locale: Locale("ar"),
+      supportedLocales: [Locale("ar"), Locale("en")],
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+
+      home: SplashScreen(),
     );
   }
 }

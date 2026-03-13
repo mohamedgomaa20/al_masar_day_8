@@ -8,31 +8,34 @@ class BackgroundImageAndContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 380,
-              width: .infinity,
-              child: Image.asset("assets/images/bac.jpeg", fit: .cover),
-            ),
+      body: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            right: 0,
+            left: 0,
 
-            Expanded(
-              child: Container(
-                width: .infinity,
-                padding: EdgeInsets.only(top: 30, left: 30, right: 30),
-                decoration: BoxDecoration(
-                  color: Color(0xff1380A5),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(25),
-                    topRight: Radius.circular(25),
-                  ),
+            child: Image.asset("assets/images/bac.jpeg", fit: .cover),
+          ),
+
+          Positioned(
+            bottom: 0,
+            right: 0,
+            left: 0,
+            child: Container(
+              width: .infinity,
+              padding: EdgeInsets.only(top: 30, left: 30, right: 30,bottom: 130),
+              decoration: BoxDecoration(
+                color: Color(0xff1380A5),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25),
+                  topRight: Radius.circular(25),
                 ),
-                child: child,
               ),
+              child: child,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
     ;
