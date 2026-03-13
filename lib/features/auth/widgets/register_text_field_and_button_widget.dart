@@ -1,9 +1,9 @@
-import 'package:al_masar_day_8/screens/otp_screen.dart';
+import 'package:al_masar_day_8/features/auth/otp_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../features/auth/login_screen.dart';
-import 'custom_elevated_button.dart';
+import '../login_screen.dart';
+import '../../../core/widgets/custom_elevated_button.dart';
 import 'custom_rich_text.dart';
 import 'custom_text_field.dart';
 
@@ -36,6 +36,7 @@ class RegisterTextFieldAndButtonWidget extends StatelessWidget {
           hintText: "كلمة السر",
           prefixIcon: Icons.lock,
           keyboardType: TextInputType.visiblePassword,
+          isPassword: true,
         ),
         SizedBox(height: 10),
         Row(

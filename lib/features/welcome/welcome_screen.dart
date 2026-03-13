@@ -1,16 +1,16 @@
-import 'package:al_masar_day_8/widgets/custom_elevated_button.dart';
+import 'package:al_masar_day_8/features/auth/widgets/app_scaffold.dart';
+import 'package:al_masar_day_8/core/widgets/custom_elevated_button.dart';
 import 'package:al_masar_day_8/features/auth/register_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../features/auth/login_screen.dart';
+import '../auth/login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppScaffold(
       body: Stack(
         children: [
           Positioned(
@@ -74,40 +74,12 @@ class WelcomeScreen extends StatelessWidget {
                       );
                     },
                   ),
+                  SizedBox(height: 100),
                 ],
               ),
             ),
           ),
         ],
-      ),
-
-      bottomNavigationBar: SizedBox(
-        height: 100,
-        child: BottomNavigationBar(
-          type: .fixed,
-          selectedItemColor: Color(0xff1380A5),
-          unselectedItemColor: Color(0xff808080),
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: [
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.user),
-              label: "Profile",
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.calendarDays),
-              label: "Calender",
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.bell),
-              label: "Notifications",
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.house),
-              label: "Home",
-            ),
-          ],
-        ),
       ),
     );
   }

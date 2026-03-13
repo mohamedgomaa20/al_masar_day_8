@@ -1,5 +1,5 @@
-import 'package:al_masar_day_8/screens/splash_screen.dart';
-import 'package:al_masar_day_8/screens/welcome_screen.dart';
+import 'package:al_masar_day_8/features/splash/splash_screen.dart';
+import 'package:al_masar_day_8/features/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
