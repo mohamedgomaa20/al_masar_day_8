@@ -1,8 +1,8 @@
 import 'package:al_masar_day_8/widgets/custom_login_button.dart';
+import 'package:al_masar_day_8/features/auth/register_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-import 'login_screen.dart';
+import '../features/auth/login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -58,7 +58,17 @@ class WelcomeScreen extends StatelessWidget {
                     },
                   ),
                   SizedBox(height: 20),
-                  CustomLoginButton(text: "إنشاء حساب", onTap: () {}),
+                  CustomLoginButton(
+                    text: "إنشاء حساب",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RegisterScreen(),
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
