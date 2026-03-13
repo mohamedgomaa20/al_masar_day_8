@@ -15,7 +15,6 @@ class BackgroundImageAndContainer extends StatelessWidget {
             top: 0,
             right: 0,
             left: 0,
-
             child: Image.asset("assets/images/bac.jpeg", fit: .cover),
           ),
 

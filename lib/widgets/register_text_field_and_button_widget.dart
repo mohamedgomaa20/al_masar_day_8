@@ -77,7 +77,6 @@ class RegisterTextFieldAndButtonWidget extends StatelessWidget {
               );
             },
         ),
-        SizedBox(height: 20),
       ],
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pinput/pinput.dart';
 
 import 'custom_elevated_button.dart';
 import 'custom_pin_put.dart';
