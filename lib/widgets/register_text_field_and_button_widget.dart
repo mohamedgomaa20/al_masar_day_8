@@ -3,7 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../features/auth/login_screen.dart';
-import 'custom_login_button.dart';
+import 'custom_elevated_button.dart';
 import 'custom_rich_text.dart';
 import 'custom_text_field.dart';
 
@@ -56,7 +56,7 @@ class RegisterTextFieldAndButtonWidget extends StatelessWidget {
           ],
         ),
         SizedBox(height: 20),
-        CustomLoginButton(
+        CustomElevatedButton(
           text: "إنشاء حساب",
           onTap: () {
             Navigator.push(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'custom_login_button.dart';
+import 'custom_elevated_button.dart';
 
 class OtpTextFieldAndButtonWidget extends StatelessWidget {
   const OtpTextFieldAndButtonWidget({super.key});
@@ -34,7 +34,7 @@ class OtpTextFieldAndButtonWidget extends StatelessWidget {
         SizedBox(height: 20),
 
         SizedBox(height: 40),
-        CustomLoginButton(text: "تأكيد", onTap: () {}),
+        CustomElevatedButton(text: "تأكيد", onTap: () {}),
         SizedBox(height: 20),
       ],
     );

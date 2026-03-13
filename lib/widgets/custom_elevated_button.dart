@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomLoginButton extends StatelessWidget {
-  const CustomLoginButton({super.key, required this.text, required this.onTap});
+class CustomElevatedButton extends StatelessWidget {
+  const CustomElevatedButton({super.key, required this.text, required this.onTap});
 
   final String text;
   final VoidCallback onTap;

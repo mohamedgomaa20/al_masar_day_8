@@ -1,4 +1,4 @@
-import 'package:al_masar_day_8/widgets/custom_login_button.dart';
+import 'package:al_masar_day_8/widgets/custom_elevated_button.dart';
 import 'package:al_masar_day_8/features/auth/register_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -10,11 +10,20 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: [
-          Image.asset("assets/images/welcome.jpeg", fit: .cover),
-
-          Expanded(
+          SizedBox(
+            height: MediaQuery.sizeOf(context).height,
+            child: Column(
+              children: [
+                Image.asset("assets/images/welcome.jpeg", fit: .cover),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            left: 0,
             child: Container(
               width: .infinity,
               padding: EdgeInsets.only(top: 30),
@@ -26,6 +35,7 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
               child: Column(
+                mainAxisSize: .min,
                 children: [
                   Text(
                     "أهلا بك في مؤسسة المسار",
@@ -48,7 +58,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
 
                   SizedBox(height: 25),
-                  CustomLoginButton(
+                  CustomElevatedButton(
                     text: "تسجيل الدخول",
                     onTap: () {
                       Navigator.push(
@@ -58,7 +68,7 @@ class WelcomeScreen extends StatelessWidget {
                     },
                   ),
                   SizedBox(height: 20),
-                  CustomLoginButton(
+                  CustomElevatedButton(
                     text: "إنشاء حساب",
                     onTap: () {
                       Navigator.push(
@@ -69,6 +79,7 @@ class WelcomeScreen extends StatelessWidget {
                       );
                     },
                   ),
+                  SizedBox(height: 130),
                 ],
               ),
             ),

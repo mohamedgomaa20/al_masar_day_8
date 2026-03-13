@@ -3,7 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/otp_screen.dart';
-import 'custom_login_button.dart';
+import 'custom_elevated_button.dart';
 import 'custom_rich_text.dart';
 import 'custom_text_field.dart';
 
@@ -60,7 +60,7 @@ class LoginTextFieldAndButtonWidget extends StatelessWidget {
           ),
         ),
         SizedBox(height: 40),
-        CustomLoginButton(
+        CustomElevatedButton(
           text: "تسجيل الدخول",
           onTap: () {
             Navigator.push(
