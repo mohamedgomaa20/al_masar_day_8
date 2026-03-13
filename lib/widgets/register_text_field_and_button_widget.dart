@@ -19,19 +19,19 @@ class RegisterTextFieldAndButtonWidget extends StatelessWidget {
           prefixIcon: Icons.person,
           keyboardType: TextInputType.name,
         ),
-        SizedBox(height: 20),
+        SizedBox(height: 15),
         CustomTextField(
           hintText: "البريد الإلكتروني",
           prefixIcon: Icons.email,
           keyboardType: TextInputType.emailAddress,
         ),
-        SizedBox(height: 20),
+        SizedBox(height: 15),
         CustomTextField(
           hintText: "رقم الموبايل مع رمز الدولة بدون (+)",
           prefixIcon: Icons.phone,
           keyboardType: TextInputType.phone,
         ),
-        SizedBox(height: 20),
+        SizedBox(height: 15),
         CustomTextField(
           hintText: "كلمة السر",
           prefixIcon: Icons.lock,
@@ -77,6 +77,7 @@ class RegisterTextFieldAndButtonWidget extends StatelessWidget {
               );
             },
         ),
+        SizedBox(height: 20),
       ],
     );
   }

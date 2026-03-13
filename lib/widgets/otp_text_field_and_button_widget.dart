@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pinput/pinput.dart';
 
 import 'custom_elevated_button.dart';
+import 'custom_pin_put.dart';
 
 class OtpTextFieldAndButtonWidget extends StatelessWidget {
   const OtpTextFieldAndButtonWidget({super.key});
@@ -8,8 +10,8 @@ class OtpTextFieldAndButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: .center,
       children: [
+        SizedBox(height: 65),
         Text(
           "أدخل رمز التحقق OTP",
           style: TextStyle(
@@ -32,10 +34,10 @@ class OtpTextFieldAndButtonWidget extends StatelessWidget {
         ),
 
         SizedBox(height: 20),
+        CustomPinPut(),
 
-        SizedBox(height: 40),
+        SizedBox(height: 80),
         CustomElevatedButton(text: "تأكيد", onTap: () {}),
-        SizedBox(height: 20),
       ],
     );
   }

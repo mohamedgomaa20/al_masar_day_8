@@ -81,6 +81,7 @@ class LoginTextFieldAndButtonWidget extends StatelessWidget {
               );
             },
         ),
+        SizedBox(height: 60),
       ],
     );
   }

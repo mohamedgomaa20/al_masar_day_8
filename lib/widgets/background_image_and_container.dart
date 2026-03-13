@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BackgroundImageAndContainer extends StatelessWidget {
   const BackgroundImageAndContainer({super.key, required this.child});
@@ -24,7 +25,8 @@ class BackgroundImageAndContainer extends StatelessWidget {
             left: 0,
             child: Container(
               width: .infinity,
-              padding: EdgeInsets.only(top: 30, left: 30, right: 30,bottom: 130),
+              height: 500,
+              padding: EdgeInsets.only(top: 30, left: 30, right: 30,),
               decoration: BoxDecoration(
                 color: Color(0xff1380A5),
                 borderRadius: BorderRadius.only(
@@ -37,7 +39,35 @@ class BackgroundImageAndContainer extends StatelessWidget {
           ),
         ],
       ),
+        bottomNavigationBar: SizedBox(
+          height: 100,
+          child: BottomNavigationBar(
+            type: .fixed,
+            selectedItemColor: Color(0xff1380A5),
+            unselectedItemColor: Color(0xff808080),
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            items: [
+              BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.user),
+                label: "Profile",
+              ),
+              BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.calendarDays),
+                label: "Calender",
+              ),
+              BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.bell),
+                label: "Notifications",
+              ),
+              BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.house),
+                label: "Home",
+              ),
+            ],
+          ),
+        )
     );
-    ;
+
   }
 }
