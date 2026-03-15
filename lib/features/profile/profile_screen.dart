@@ -21,6 +21,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController _phoneController = TextEditingController(
     text: "01002418816",
   );
+
   @override
   void dispose() {
     _nameController.dispose();
@@ -28,13 +29,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _phoneController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(15.0),
             child: Column(
               children: [
                 CustomAvatarImage(),
@@ -47,7 +49,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 SizedBox(height: 20),
                 CustomTextFormField(
                   controller: _emailController,
-
                   labelText: "البريد الإلكتروني",
                   prefixIcon: Icons.email_outlined,
                 ),
@@ -58,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   prefixIcon: Icons.phone,
                 ),
                 SizedBox(height: 20),
-                CustomElevatedButton(onPressed: (){}, text: "تعديل الحساب"),
+                CustomElevatedButton(onPressed: () {}, text: "تعديل الحساب"),
               ],
             ),
           ),
