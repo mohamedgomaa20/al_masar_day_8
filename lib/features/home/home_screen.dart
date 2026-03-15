@@ -1,5 +1,6 @@
 import 'package:al_masar_day_8/core/models/product_model.dart';
 import 'package:al_masar_day_8/core/widgets/custom_search_bar.dart';
+import 'package:al_masar_day_8/features/home/greeting_widget.dart';
 import 'package:al_masar_day_8/features/home/header_text_widget.dart';
 import 'package:al_masar_day_8/features/home/product_card.dart';
 import 'package:flutter/material.dart';
@@ -38,9 +39,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(child: SizedBox(height: 24)),
-
-        SliverToBoxAdapter(
+        SliverToBoxAdapter(child: GreetingWidget(username: "محمد جمعه",)),
+         SliverToBoxAdapter(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 15),
             child: CustomSearchBar(
