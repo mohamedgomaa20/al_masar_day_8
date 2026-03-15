@@ -1,5 +1,4 @@
-import 'package:al_masar_day_8/features/splash/splash_screen.dart';
-import 'package:al_masar_day_8/features/welcome/welcome_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -22,7 +21,7 @@ class ALMasarApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
 
-      home: SplashScreen(),
+      home: Scaffold(),
     );
   }
 }
