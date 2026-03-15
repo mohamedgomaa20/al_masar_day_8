@@ -12,6 +12,7 @@ class ProductCard extends StatelessWidget {
   final ProductModel product;
   final bool isFavorite;
 
+
   @override
   Widget build(BuildContext context) {
     return Container(
