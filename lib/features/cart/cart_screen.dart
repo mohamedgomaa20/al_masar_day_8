@@ -22,6 +22,20 @@ class CartScreen extends StatelessWidget {
               ],
             ),
           ),
+          Card(
+            child: ExpansionTile(
+              title: ListTile(
+                contentPadding: .zero,
+                title: Text("اضغط لعرض التفاصيل"),
+              ),
+              children: [
+                ListTile(title: Text("مجموع الطلبات: 3"), onTap: () {}),
+
+                ListTile(title: Text("مجموع الطلبات: 3"), onTap: () {}),
+                ListTile(title: Text("مجموع الطلبات: 3"), onTap: () {}),
+              ],
+            ),
+          ),
           Expanded(
             child: TabBarView(
               children: [
@@ -36,5 +50,3 @@ class CartScreen extends StatelessWidget {
     );
   }
 }
-
-
