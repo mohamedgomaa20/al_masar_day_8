@@ -11,7 +11,7 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: .infinity,
-      margin: EdgeInsets.only(bottom: 10),
+      margin: EdgeInsets.only(bottom: 10,),
       decoration: BoxDecoration(
         borderRadius: .circular(15),
         border: Border.all(color: AppColors.primaryColorLight),
@@ -19,12 +19,12 @@ class CartItem extends StatelessWidget {
       ),
 
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(15.0),
         child: Row(
           crossAxisAlignment: .start,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(12),
               child: Container(
                 width: 80,
                 height: 80,
@@ -76,7 +76,7 @@ class CartItem extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Color(0xffa7dab1).withValues(alpha: 0.5),
+                color:AppColors.primaryColorLight,
               ),
               child: Row(
                 children: [
@@ -84,7 +84,7 @@ class CartItem extends StatelessWidget {
                   SizedBox(width: 5),
                   Text(
                     cartItem.status,
-                    style: TextStyle(color: Colors.black54, fontSize: 13),
+                    style: TextStyle(color: AppColors.primaryColor, fontSize: 13),
                   ),
                 ],
               ),
