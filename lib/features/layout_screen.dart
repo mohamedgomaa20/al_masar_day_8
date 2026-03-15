@@ -1,3 +1,4 @@
+import 'package:al_masar_day_8/core/app_colors.dart';
 import 'package:al_masar_day_8/features/profile/profile_screen.dart';
 import 'package:al_masar_day_8/features/search/search_screen.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,8 @@ class _LayoutScreenState extends State<LayoutScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_titles[_currentIndex]),
-        backgroundColor: Color(0xffa7dab1),
+        backgroundColor: AppColors.primaryColor,
+        foregroundColor: AppColors.white,
         actions: [
           if (_currentIndex == 0)
             IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
@@ -38,13 +40,13 @@ class _LayoutScreenState extends State<LayoutScreen> {
 
       bottomNavigationBar: BottomNavigationBar(
         type: .fixed,
-        selectedItemColor: Color(0xffa7dab1),
+        selectedItemColor: AppColors.primaryColor,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "الرئيسية"),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "البحث"),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
-            label: "السلة",
+            label: "طلباتي",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
