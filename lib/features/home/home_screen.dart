@@ -1,5 +1,7 @@
+import 'package:al_masar_day_8/core/models/product_model.dart';
 import 'package:al_masar_day_8/core/widgets/custom_search_bar.dart';
 import 'package:al_masar_day_8/features/home/header_text_widget.dart';
+import 'package:al_masar_day_8/features/home/product_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/models/category_model.dart';
@@ -44,23 +46,18 @@ class HomeScreen extends StatelessWidget {
           SizedBox(height: 10),
           Expanded(
             child: GridView.builder(
-              itemCount: 20,
+              itemCount: ProductModel.products.length,
               shrinkWrap: true,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+                childAspectRatio: 0.7,
               ),
               itemBuilder: (context, index) {
-                return Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/laptop_2.webp"),
-                    ),
-                  ),
+                return ProductCard(
+                  product: ProductModel.products[index],
+                  isFavorite: index % 2 == 0,
                 );
               },
             ),
