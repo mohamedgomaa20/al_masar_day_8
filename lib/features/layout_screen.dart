@@ -19,11 +19,21 @@ class _LayoutScreenState extends State<LayoutScreen> {
     CartScreen(),
     ProfileScreen(),
   ];
+
+  final List<String> _titles = ["الرئيسية", "البحث", "طلباتي", "حسابي"];
   int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(_titles[_currentIndex]),
+        backgroundColor: Color(0xffa7dab1),
+        actions: [
+          if (_currentIndex == 0)
+            IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+        ],
+      ),
       body: _screens[_currentIndex],
 
       bottomNavigationBar: BottomNavigationBar(
