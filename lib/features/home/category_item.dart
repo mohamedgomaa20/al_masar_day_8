@@ -1,3 +1,4 @@
+import 'package:al_masar_day_8/core/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/models/category_model.dart';
@@ -19,13 +20,15 @@ class CategoryItem extends StatelessWidget {
         Container(
           padding: .all(15),
           decoration: BoxDecoration(
-            color: isSelected ? Color(0xff2d5a3d) : Color(0xffe8f5ed),
+            color: isSelected
+                ? AppColors.primaryColor
+                : AppColors.primaryColorLight,
             borderRadius: BorderRadius.circular(15),
           ),
           child: Icon(
             category.icon,
             size: 28,
-            color: isSelected ? Colors.white : Color(0xff2d5a3d),
+            color: isSelected ? AppColors.white : AppColors.primaryColor,
           ),
         ),
         SizedBox(height: 5),
@@ -33,7 +36,7 @@ class CategoryItem extends StatelessWidget {
           category.name,
           style: TextStyle(
             fontSize: 12,
-            color: isSelected ? Color(0xff2d5a3d) : Colors.grey.shade500,
+            color: isSelected ? AppColors.primaryColor : AppColors.gray,
             fontWeight: isSelected ? .bold : .normal,
           ),
         ),

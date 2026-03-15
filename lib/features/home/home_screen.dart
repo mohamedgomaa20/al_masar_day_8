@@ -1,4 +1,5 @@
 import 'package:al_masar_day_8/core/widgets/custom_text_field.dart';
+import 'package:al_masar_day_8/features/home/header_text_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/models/category_model.dart';
@@ -18,13 +19,11 @@ class HomeScreen extends StatelessWidget {
           CustomTextField(text: "حقل البحث", suffixIcon: Icons.search),
 
           SizedBox(height: 30),
-          Text(
-            "الفئات",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
+          HeaderTextWidget(title: "الفئات", onTap: () {}),
+
           SizedBox(height: 20),
           SizedBox(
-            height: 110,
+            height: 100,
             child: ListView.separated(
               itemCount: CategoryModel.categories.length,
               scrollDirection: .horizontal,
@@ -37,12 +36,8 @@ class HomeScreen extends StatelessWidget {
               },
             ),
           ),
-          SizedBox(height: 30),
+          HeaderTextWidget(title: "منتجات مميزة", onTap: () {}),
 
-          Text(
-            "منتجات مميزة",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
           SizedBox(height: 10),
           Expanded(
             child: GridView.builder(
