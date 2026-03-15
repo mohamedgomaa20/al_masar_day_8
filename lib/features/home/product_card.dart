@@ -7,10 +7,12 @@ class ProductCard extends StatelessWidget {
     super.key,
     required this.product,
     this.isFavorite = false,
+    required this.onTapFavorite,
   });
 
   final ProductModel product;
   final bool isFavorite;
+  final VoidCallback onTapFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class ProductCard extends StatelessWidget {
                   left: 8,
                   top: 8,
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: onTapFavorite,
                     child: Container(
                       padding: .all(8),
                       decoration: BoxDecoration(

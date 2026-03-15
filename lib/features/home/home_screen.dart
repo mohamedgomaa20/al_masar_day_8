@@ -7,8 +7,32 @@ import 'package:flutter/material.dart';
 import '../../core/models/category_model.dart';
 import 'category_item.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedCategory = 0;
+  final Set<int> _favoriteIndexes = {};
+
+  void _changeCategory(int index) {
+    setState(() {
+      _selectedCategory = index;
+    });
+  }
+
+  void _toggleFavorite(int index) {
+    setState(() {
+      if (_favoriteIndexes.contains(index)) {
+        _favoriteIndexes.remove(index);
+      } else {
+        _favoriteIndexes.add(index);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +65,8 @@ class HomeScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return CategoryItem(
                   category: CategoryModel.categories[index],
-                  isSelected: index == 0,
+                  isSelected: index == _selectedCategory,
+                  onTap: () => _changeCategory(index),
                 );
               },
             ),
@@ -58,7 +83,8 @@ class HomeScreen extends StatelessWidget {
             itemCount: ProductModel.products.length,
             itemBuilder: (context, index) => ProductCard(
               product: ProductModel.products[index],
-              isFavorite: index % 2 == 0,
+              isFavorite: _favoriteIndexes.contains(index),
+              onTapFavorite: () => _toggleFavorite(index),
             ),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
