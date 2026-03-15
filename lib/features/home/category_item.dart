@@ -36,7 +36,7 @@ class CategoryItem extends StatelessWidget {
           category.name,
           style: TextStyle(
             fontSize: 12,
-            color: isSelected ? AppColors.primaryColor : AppColors.gray,
+            color: isSelected ? AppColors.primaryColor : AppColors.gray500,
             fontWeight: isSelected ? .bold : .normal,
           ),
         ),

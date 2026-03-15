@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/widgets/custom_text_field.dart';
+import '../../core/widgets/custom_search_bar.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -13,7 +13,7 @@ class SearchScreen extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 10),
-          CustomTextField(text: "حقل البحث", suffixIcon: Icons.search),
+          CustomSearchBar(hintText: "حقل البحث", prefixIcon: Icons.search),
           Spacer(),
           Text(
             "ابحث عن المنتجات التي تريدها من خلال حقل البحث في الأعلى، وستظهر لك النتائج هنا.",

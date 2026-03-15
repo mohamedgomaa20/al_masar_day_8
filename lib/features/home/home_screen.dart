@@ -1,4 +1,4 @@
-import 'package:al_masar_day_8/core/widgets/custom_text_field.dart';
+import 'package:al_masar_day_8/core/widgets/custom_search_bar.dart';
 import 'package:al_masar_day_8/features/home/header_text_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,10 @@ class HomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 20),
-          CustomTextField(text: "حقل البحث", suffixIcon: Icons.search),
+          CustomSearchBar(
+            hintText: "ابحث عن منتج...",
+            prefixIcon: Icons.search,
+          ),
 
           SizedBox(height: 30),
           HeaderTextWidget(title: "الفئات", onTap: () {}),
