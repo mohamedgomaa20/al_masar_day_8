@@ -9,11 +9,7 @@ class ProfileScreen extends StatelessWidget {
       body: Center(
         child: Text(
           "Profile Screen",
-          style: TextStyle(
-            fontSize: 30,
-            fontWeight: .bold,
-            fontFamily: "Cairo",
-          ),
+          style: TextStyle(fontSize: 30, fontWeight: .bold),
         ),
       ),
     );

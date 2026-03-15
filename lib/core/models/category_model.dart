@@ -8,9 +8,10 @@ class CategoryModel {
 
   static List<CategoryModel> categories = [
     CategoryModel(name: "إلكترونيات", icon: Icons.laptop_chromebook),
-    CategoryModel(name: "ملابس", icon: Icons.laptop_chromebook),
+    CategoryModel(name: "ملابس", icon: Icons. checkroom),
     CategoryModel(name: "منزل", icon: Icons.home),
     CategoryModel(name: "كتب", icon: Icons.menu_book),
+    CategoryModel(name: "ملابس", icon: Icons. checkroom),
     CategoryModel(name: "منزل", icon: Icons.home),
     CategoryModel(name: "كتب", icon: Icons.menu_book),
   ];

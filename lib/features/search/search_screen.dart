@@ -8,7 +8,7 @@ class SearchScreen extends StatelessWidget {
     return Center(
       child: Text(
         "Search Screen",
-        style: TextStyle(fontSize: 30, fontWeight: .bold, fontFamily: "Cairo"),
+        style: TextStyle(fontSize: 30, fontWeight: .bold),
       ),
     );
   }

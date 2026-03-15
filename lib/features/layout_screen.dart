@@ -38,6 +38,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
 
       bottomNavigationBar: BottomNavigationBar(
         type: .fixed,
+        selectedItemColor: Color(0xffa7dab1),
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "الرئيسية"),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "البحث"),
