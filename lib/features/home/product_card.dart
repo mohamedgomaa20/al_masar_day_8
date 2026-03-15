@@ -12,7 +12,6 @@ class ProductCard extends StatelessWidget {
   final ProductModel product;
   final bool isFavorite;
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -113,7 +112,11 @@ class ProductCard extends StatelessWidget {
                           borderRadius: .circular(10),
                           color: AppColors.primaryColor,
                         ),
-                        child: Icon(Icons.add, color: AppColors.white,size: 18,),
+                        child: Icon(
+                          Icons.add,
+                          color: AppColors.white,
+                          size: 18,
+                        ),
                       ),
                     ),
                   ],

@@ -12,27 +12,32 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 20),
-          CustomSearchBar(
-            hintText: "ابحث عن منتج...",
-            prefixIcon: Icons.search,
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(child: SizedBox(height: 24)),
+
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            child: CustomSearchBar(
+              hintText: "ابحث عن منتج...",
+              prefixIcon: Icons.search,
+            ),
           ),
-
-          SizedBox(height: 30),
-          HeaderTextWidget(title: "الفئات", onTap: () {}),
-
-          SizedBox(height: 20),
-          SizedBox(
-            height: 100,
+        ),
+        SliverToBoxAdapter(child: SizedBox(height: 20)),
+        SliverToBoxAdapter(
+          child: HeaderTextWidget(title: "الفئات", onTap: () {}),
+        ),
+        SliverToBoxAdapter(child: SizedBox(height: 12)),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 85,
             child: ListView.separated(
               itemCount: CategoryModel.categories.length,
               scrollDirection: .horizontal,
-              separatorBuilder: (context, index) => SizedBox(width: 10),
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              separatorBuilder: (context, index) => SizedBox(width: 12),
               itemBuilder: (context, index) {
                 return CategoryItem(
                   category: CategoryModel.categories[index],
@@ -41,29 +46,30 @@ class HomeScreen extends StatelessWidget {
               },
             ),
           ),
-          HeaderTextWidget(title: "منتجات مميزة", onTap: () {}),
-
-          SizedBox(height: 10),
-          Expanded(
-            child: GridView.builder(
-              itemCount: ProductModel.products.length,
-              shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-                childAspectRatio: 0.7,
-              ),
-              itemBuilder: (context, index) {
-                return ProductCard(
-                  product: ProductModel.products[index],
-                  isFavorite: index % 2 == 0,
-                );
-              },
+        ),
+        SliverToBoxAdapter(child: SizedBox(height: 20)),
+        SliverToBoxAdapter(
+          child: HeaderTextWidget(title: "منتجات مميزة", onTap: () {}),
+        ),
+        SliverToBoxAdapter(child: SizedBox(height: 12)),
+        SliverPadding(
+          padding: EdgeInsets.symmetric(horizontal: 15),
+          sliver: SliverGrid.builder(
+            itemCount: ProductModel.products.length,
+            itemBuilder: (context, index) => ProductCard(
+              product: ProductModel.products[index],
+              isFavorite: index % 2 == 0,
+            ),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+              childAspectRatio: .6,
             ),
           ),
-        ],
-      ),
+        ),
+        SliverToBoxAdapter(child: SizedBox(height: 20)),
+      ],
     );
   }
 }

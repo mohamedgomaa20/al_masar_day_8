@@ -9,21 +9,24 @@ class HeaderTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: .spaceBetween,
-      children: [
-        Text(
-          title,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        GestureDetector(
-          onTap: onTap,
-          child: Text(
-            "عرض الكل",
-            style: TextStyle(fontSize: 13, color: AppColors.primaryColor),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      child: Row(
+        mainAxisAlignment: .spaceBetween,
+        children: [
+          Text(
+            title,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
-        ),
-      ],
+          GestureDetector(
+            onTap: onTap,
+            child: Text(
+              "عرض الكل",
+              style: TextStyle(fontSize: 13, color: AppColors.primaryColor),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
