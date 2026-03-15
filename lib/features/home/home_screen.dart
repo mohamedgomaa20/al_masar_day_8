@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/models/category_model.dart';
 import 'category_item.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -29,7 +30,10 @@ class HomeScreen extends StatelessWidget {
               scrollDirection: .horizontal,
               separatorBuilder: (context, index) => SizedBox(width: 10),
               itemBuilder: (context, index) {
-                return CategoryItem(category: CategoryModel.categories[index]);
+                return CategoryItem(
+                  category: CategoryModel.categories[index],
+                  isSelected: index == 0,
+                );
               },
             ),
           ),

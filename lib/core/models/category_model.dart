@@ -11,8 +11,7 @@ class CategoryModel {
     CategoryModel(name: "ملابس", icon: Icons. checkroom),
     CategoryModel(name: "منزل", icon: Icons.home),
     CategoryModel(name: "كتب", icon: Icons.menu_book),
-    CategoryModel(name: "ملابس", icon: Icons. checkroom),
-    CategoryModel(name: "منزل", icon: Icons.home),
-    CategoryModel(name: "كتب", icon: Icons.menu_book),
-  ];
+    CategoryModel(name: "رياضة", icon: Icons.sports_soccer ),
+    CategoryModel(name: "طعام", icon: Icons.fastfood),
+   ];
 }
