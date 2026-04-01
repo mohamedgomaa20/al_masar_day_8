@@ -38,8 +38,10 @@ class FirebaseAuthServices {
   static Future<void> logout() async {
     try {
       await _firebaseAuth.signOut();
-    } on FirebaseAuthException catch (e) {}
+    } on FirebaseAuthException catch (e) {
+      print(e.toString());
+    } catch (e) {
+      print(e.toString());
+    }
   }
-
-
 }
