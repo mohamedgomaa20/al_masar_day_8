@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/custom_elevated_button.dart';
 import '../../data/models/user_data_class.dart';
-import '../screens/otp_screen.dart';
 import '../screens/register_screen.dart';
 import 'custom_rich_text.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
@@ -22,7 +21,8 @@ class _LoginTextFieldAndButtonWidgetState
     extends State<LoginTextFieldAndButtonWidget> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -93,16 +93,22 @@ class _LoginTextFieldAndButtonWidgetState
           SizedBox(height: 40),
           CustomElevatedButton(
             text: "تسجيل الدخول",
-            onTap: () {
-              if (_formKey.currentState!.validate()) {
-                _login(
-                  UserDataClass(
-                    email: _emailController.text.trim(),
-                    password: _passwordController.text.trim(),
-                  ),
-                );
-              }
-            },
+            isLoading: _isLoading,
+            onTap: _isLoading
+                ? null
+                : () async {
+                    if (_formKey.currentState!.validate()) {
+                      setState(() => _isLoading = true);
+                      FocusScope.of(context).unfocus();
+                      await _login(
+                        UserDataClass(
+                          email: _emailController.text.trim(),
+                          password: _passwordController.text.trim(),
+                        ),
+                      );
+                      setState(() => _isLoading = false);
+                    }
+                  },
           ),
           SizedBox(height: 10),
 

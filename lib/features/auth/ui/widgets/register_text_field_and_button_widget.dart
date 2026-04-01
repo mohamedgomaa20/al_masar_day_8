@@ -24,6 +24,7 @@ class _RegisterTextFieldAndButtonWidgetState
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -104,16 +105,22 @@ class _RegisterTextFieldAndButtonWidgetState
           SizedBox(height: 10),
           CustomElevatedButton(
             text: "إنشاء حساب",
-            onTap: () {
-              if (_formKey.currentState!.validate()) {
-                _register(
-                  UserDataClass(
-                    email: _emailController.text.trim(),
-                    password: _passwordController.text.trim(),
-                  ),
-                );
-              }
-            },
+            isLoading: _isLoading,
+            onTap: _isLoading
+                ? null
+                : () async {
+                    if (_formKey.currentState!.validate()) {
+                      setState(() => _isLoading = true);
+                      FocusScope.of(context).unfocus();
+                      await _register(
+                        UserDataClass(
+                          email: _emailController.text.trim(),
+                          password: _passwordController.text.trim(),
+                        ),
+                      );
+                      setState(() => _isLoading = false);
+                    }
+                  },
           ),
           SizedBox(height: 10),
           CustomRichText(
@@ -132,7 +139,7 @@ class _RegisterTextFieldAndButtonWidgetState
     );
   }
 
-  void _register(UserDataClass user) async {
+  Future<void> _register(UserDataClass user) async {
     UserCredential? userCredential = await FirebaseAuthServices.register(user);
     userCredential == null
         ? ScaffoldMessenger.of(context).showSnackBar(

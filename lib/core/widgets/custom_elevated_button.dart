@@ -7,12 +7,14 @@ class CustomElevatedButton extends StatelessWidget {
     required this.onTap,
     this.height,
     this.width,
+    this.isLoading = false,
   });
 
   final String text;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final double? height;
   final double? width;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,23 @@ class CustomElevatedButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
         fixedSize: Size(width ?? 230, height ?? 50),
       ),
-      child: Text(
-        text,
-        style: TextStyle(fontSize: 16, fontWeight: .bold, fontFamily: "Cairo"),
-      ),
+      child: isLoading
+          ? SizedBox(
+              height: 30,
+              width: 30,
+              child: CircularProgressIndicator(
+                color: Colors.white,
+                strokeWidth: 5,
+              ),
+            )
+          : Text(
+              text,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: .bold,
+                fontFamily: "Cairo",
+              ),
+            ),
     );
   }
 }
