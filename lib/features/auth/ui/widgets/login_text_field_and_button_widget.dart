@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/custom_elevated_button.dart';
+import '../../../home/ui/screens/home_screen.dart';
 import '../../data/models/user_data_class.dart';
 import '../screens/register_screen.dart';
 import 'custom_rich_text.dart';
@@ -23,6 +24,7 @@ class _LoginTextFieldAndButtonWidgetState
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
+  bool _isLoadingWithGoogle = false;
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +110,30 @@ class _LoginTextFieldAndButtonWidgetState
                           ),
                         );
                         setState(() => _isLoading = false);
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                          (route) => false,
+                        );
                       }
+                    },
+            ),
+            SizedBox(height: 10),
+            CustomElevatedButton(
+              text: "التسجيل بإستخدام جوجل",
+              isLoading: _isLoadingWithGoogle,
+              onTap: _isLoadingWithGoogle
+                  ? null
+                  : () async {
+                      setState(() => _isLoadingWithGoogle = true);
+                      FocusScope.of(context).unfocus();
+                      await FirebaseAuthServices.signInWithGoogle();
+                      setState(() => _isLoadingWithGoogle = false);
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        (route) => false,
+                      );
                     },
             ),
             SizedBox(height: 10),

@@ -29,6 +29,12 @@ class HomeScreen extends StatelessWidget {
             text: "Logout",
             onTap: () async {
               await FirebaseAuthServices.logout();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Logout Successfully"),
+                  backgroundColor: Colors.green,
+                ),
+              );
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => SplashScreen()),
