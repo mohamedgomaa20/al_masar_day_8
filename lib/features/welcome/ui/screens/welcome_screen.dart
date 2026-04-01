@@ -1,16 +1,15 @@
-import 'package:al_masar_day_8/features/auth/widgets/app_scaffold.dart';
 import 'package:al_masar_day_8/core/widgets/custom_elevated_button.dart';
-import 'package:al_masar_day_8/features/auth/register_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../auth/login_screen.dart';
+import '../../../auth/ui/screens/login_screen.dart';
+import '../../../auth/ui/screens/register_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
+    return Scaffold(
       body: Stack(
         children: [
           Positioned(
@@ -74,7 +73,7 @@ class WelcomeScreen extends StatelessWidget {
                       );
                     },
                   ),
-                  SizedBox(height: 100),
+                  SizedBox(height: 50),
                 ],
               ),
             ),

@@ -1,29 +1,35 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatefulWidget {
-  const CustomTextField({
+class CustomTextFormField extends StatefulWidget {
+  const CustomTextFormField({
     super.key,
     required this.hintText,
     required this.prefixIcon,
     required this.keyboardType,
     this.isPassword = false,
+    required this.controller,
+    this.validator,
   });
 
   final String hintText;
   final IconData prefixIcon;
   final TextInputType keyboardType;
   final bool isPassword;
+  final TextEditingController controller;
+  final String? Function(String?)? validator;
 
   @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
+  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
 
-class _CustomTextFieldState extends State<CustomTextField> {
+class _CustomTextFormFieldState extends State<CustomTextFormField> {
   bool _isPasswordShown = false;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      controller: widget.controller,
+      validator: widget.validator,
       style: TextStyle(fontSize: 16, fontFamily: "Cairo"),
       keyboardType: widget.keyboardType,
       obscureText: widget.isPassword && _isPasswordShown,

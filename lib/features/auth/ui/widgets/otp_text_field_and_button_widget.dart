@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/custom_elevated_button.dart';
 import 'custom_pin_put.dart';
 
 class OtpTextFieldAndButtonWidget extends StatelessWidget {

@@ -1,6 +1,7 @@
-import 'package:al_masar_day_8/features/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../welcome/ui/screens/welcome_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

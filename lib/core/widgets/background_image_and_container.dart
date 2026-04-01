@@ -1,4 +1,3 @@
-import 'package:al_masar_day_8/features/auth/widgets/app_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class BackgroundImageAndContainer extends StatelessWidget {
@@ -8,7 +7,7 @@ class BackgroundImageAndContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
+    return Scaffold(
       body: Stack(
         children: [
           Positioned(
@@ -24,7 +23,7 @@ class BackgroundImageAndContainer extends StatelessWidget {
             left: 0,
             child: Container(
               width: .infinity,
-              height: 600,
+              height: MediaQuery.of(context).size.height * 0.63,
               padding: EdgeInsets.only(top: 30, left: 30, right: 30),
               decoration: BoxDecoration(
                 color: Color(0xff1380A5),
