@@ -23,7 +23,7 @@ class CustomTextFormField extends StatefulWidget {
 }
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
-  bool _isPasswordShown = false;
+  bool _isPasswordShown = true;
 
   @override
   Widget build(BuildContext context) {

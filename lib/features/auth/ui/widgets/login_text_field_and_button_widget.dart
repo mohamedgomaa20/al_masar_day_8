@@ -1,7 +1,10 @@
+import 'package:al_masar_day_8/features/auth/services/firebase_auth_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/custom_elevated_button.dart';
+import '../../data/models/user_data_class.dart';
 import '../screens/otp_screen.dart';
 import '../screens/register_screen.dart';
 import 'custom_rich_text.dart';
@@ -49,16 +52,16 @@ class _LoginTextFieldAndButtonWidgetState
 
           SizedBox(height: 25),
           CustomTextFormField(
-            hintText: "رقم الهاتف",
+            hintText: "البريد الإلكتروني",
             controller: _emailController,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "من فضلك أدخل رقم الهاتف";
+                return "من فضلك أدخل البريد الإلكتروني";
               }
               return null;
             },
-            prefixIcon: Icons.person,
-            keyboardType: TextInputType.phone,
+            prefixIcon: Icons.email,
+            keyboardType: TextInputType.emailAddress,
           ),
           SizedBox(height: 20),
           CustomTextFormField(
@@ -92,14 +95,17 @@ class _LoginTextFieldAndButtonWidgetState
             text: "تسجيل الدخول",
             onTap: () {
               if (_formKey.currentState!.validate()) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => OtpScreen()),
+                _login(
+                  UserDataClass(
+                    email: _emailController.text.trim(),
+                    password: _passwordController.text.trim(),
+                  ),
                 );
               }
             },
           ),
-          SizedBox(height: 15),
+          SizedBox(height: 10),
+
           CustomRichText(
             textOne: "ليس لديك حساب ؟   ",
             textTwo: "إنشاء حساب",
@@ -114,5 +120,22 @@ class _LoginTextFieldAndButtonWidgetState
         ],
       ),
     );
+  }
+
+  Future<void> _login(UserDataClass user) async {
+    UserCredential? userCredential = await FirebaseAuthServices.login(user);
+    userCredential == null
+        ? ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Login Failed"),
+              backgroundColor: Colors.red,
+            ),
+          )
+        : ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Login Successfully"),
+              backgroundColor: Colors.green,
+            ),
+          );
   }
 }

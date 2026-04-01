@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../data/models/user_data_class.dart';
 
 class FirebaseAuthServices {
-  static FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   static Future<UserCredential?> login(UserDataClass userData) async {
     try {
@@ -34,4 +34,12 @@ class FirebaseAuthServices {
       return null;
     }
   }
+
+  static Future<void> logout() async {
+    try {
+      await _firebaseAuth.signOut();
+    } on FirebaseAuthException catch (e) {}
+  }
+
+
 }

@@ -1,9 +1,11 @@
+import 'package:al_masar_day_8/features/auth/data/models/user_data_class.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/custom_elevated_button.dart';
+import '../../services/firebase_auth_services.dart';
 import '../screens/login_screen.dart';
-import '../screens/otp_screen.dart';
 import 'custom_rich_text.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 
@@ -21,7 +23,7 @@ class _RegisterTextFieldAndButtonWidgetState
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -104,9 +106,11 @@ class _RegisterTextFieldAndButtonWidgetState
             text: "إنشاء حساب",
             onTap: () {
               if (_formKey.currentState!.validate()) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => OtpScreen()),
+                _register(
+                  UserDataClass(
+                    email: _emailController.text.trim(),
+                    password: _passwordController.text.trim(),
+                  ),
                 );
               }
             },
@@ -126,5 +130,22 @@ class _RegisterTextFieldAndButtonWidgetState
         ],
       ),
     );
+  }
+
+  void _register(UserDataClass user) async {
+    UserCredential? userCredential = await FirebaseAuthServices.register(user);
+    userCredential == null
+        ? ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Register Failed"),
+              backgroundColor: Colors.red,
+            ),
+          )
+        : ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Register Successfully"),
+              backgroundColor: Colors.green,
+            ),
+          );
   }
 }
