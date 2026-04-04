@@ -1,3 +1,4 @@
+import 'package:al_masar_day_8/features/home/ui/screens/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -18,7 +19,8 @@ class ALMasarApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: "Tajawal"),
+      theme: ThemeData(fontFamily: "Tajawal", brightness: .dark),
+
       locale: Locale("ar"),
       supportedLocales: [Locale("ar"), Locale("en")],
       localizationsDelegates: [
@@ -27,7 +29,7 @@ class ALMasarApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
 
-      home: SplashScreen(),
+      home: HomeScreen(),
     );
   }
 }
