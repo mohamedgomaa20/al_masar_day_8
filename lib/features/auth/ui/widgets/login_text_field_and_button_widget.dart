@@ -1,11 +1,12 @@
-import 'package:al_masar_day_8/features/auth/services/firebase_auth_services.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:al_masar_day_8/core/utils/app_snack_bar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/widgets/custom_elevated_button.dart';
 import '../../../home/ui/screens/home_screen.dart';
 import '../../data/models/user_data_class.dart';
+import '../../logic/auth_bloc/auth_bloc.dart';
 import '../screens/register_screen.dart';
 import 'custom_rich_text.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
@@ -23,152 +24,174 @@ class _LoginTextFieldAndButtonWidgetState
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool _isLoading = false;
-  bool _isLoadingWithGoogle = false;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            Text(
-              "أهلا بك نحن سعداء بعودتك",
-              style: TextStyle(
-                fontFamily: "Tajawal",
-                fontSize: 22,
-                fontWeight: .w600,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 5),
-            Text(
-              "من فضلك قم بتسجيل الدخول",
-              style: TextStyle(
-                fontFamily: "Tajawal",
-                fontSize: 22,
-                fontWeight: .w600,
-                color: Colors.white70,
-              ),
-            ),
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is LoginFailureState) {
+          AppSnackBar.error(
+            context,
+            state.errorMessage ?? "Something went wrong",
+          );
+        }
 
-            SizedBox(height: 25),
-            CustomTextFormField(
-              hintText: "البريد الإلكتروني",
-              controller: _emailController,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "من فضلك أدخل البريد الإلكتروني";
-                }
-                return null;
-              },
-              prefixIcon: Icons.email,
-              keyboardType: TextInputType.emailAddress,
-            ),
-            SizedBox(height: 20),
-            CustomTextFormField(
-              hintText: "كلمة المرور",
-              controller: _passwordController,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "من فضلك أدخل كلمة المرور";
-                }
-                return null;
-              },
-              prefixIcon: Icons.lock,
-              keyboardType: TextInputType.visiblePassword,
-              isPassword: true,
-            ),
-            SizedBox(height: 25),
-            Align(
-              alignment: .centerLeft,
-              child: Text(
-                "هل نسيت كلمة المرور ؟",
+        if (state is LoginSuccessState) {
+          AppSnackBar.success(context, "Login Successfully");
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (_) => const HomeScreen()),
+            (route) => false,
+          );
+        }
+        if (state is LoginWithGoogleFailureState) {
+          AppSnackBar.error(
+            context,
+            state.errorMessage ?? "Google login failed",
+          );
+        }
+
+        if (state is LoginWithGoogleSuccessState) {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (_) => const HomeScreen()),
+            (route) => false,
+          );
+        }
+      },
+      child: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Text(
+                "أهلا بك نحن سعداء بعودتك",
                 style: TextStyle(
                   fontFamily: "Tajawal",
-                  fontSize: 16,
-                  fontWeight: .bold,
+                  fontSize: 22,
+                  fontWeight: .w600,
                   color: Colors.white,
                 ),
               ),
-            ),
-            SizedBox(height: 40),
-            CustomElevatedButton(
-              text: "تسجيل الدخول",
-              isLoading: _isLoading,
-              onTap: _isLoading
-                  ? null
-                  : () async {
-                      if (_formKey.currentState!.validate()) {
-                        setState(() => _isLoading = true);
-                        FocusScope.of(context).unfocus();
-                        await _login(
-                          UserDataClass(
-                            email: _emailController.text.trim(),
-                            password: _passwordController.text.trim(),
-                          ),
-                        );
-                        setState(() => _isLoading = false);
-                        // Navigator.pushAndRemoveUntil(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => HomeScreen()),
-                        //   (route) => false,
-                        // );
-                      }
-                    },
-            ),
-            SizedBox(height: 10),
-            CustomElevatedButton(
-              text: "التسجيل بإستخدام جوجل",
-              isLoading: _isLoadingWithGoogle,
-              onTap: _isLoadingWithGoogle
-                  ? null
-                  : () async {
-                      setState(() => _isLoadingWithGoogle = true);
-                      FocusScope.of(context).unfocus();
-                      await FirebaseAuthServices.signInWithGoogle();
-                      setState(() => _isLoadingWithGoogle = false);
-                      // Navigator.pushAndRemoveUntil(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => HomeScreen()),
-                      //   (route) => false,
-                      // );
-                    },
-            ),
-            SizedBox(height: 10),
+              SizedBox(height: 5),
+              Text(
+                "من فضلك قم بتسجيل الدخول",
+                style: TextStyle(
+                  fontFamily: "Tajawal",
+                  fontSize: 22,
+                  fontWeight: .w600,
+                  color: Colors.white70,
+                ),
+              ),
 
-            CustomRichText(
-              textOne: "ليس لديك حساب ؟   ",
-              textTwo: "إنشاء حساب",
-              onTapTextTwo: TapGestureRecognizer()
-                ..onTap = () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => RegisterScreen()),
+              SizedBox(height: 25),
+              CustomTextFormField(
+                hintText: "البريد الإلكتروني",
+                controller: _emailController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "من فضلك أدخل البريد الإلكتروني";
+                  }
+                  return null;
+                },
+                prefixIcon: Icons.email,
+                keyboardType: TextInputType.emailAddress,
+              ),
+              SizedBox(height: 20),
+              CustomTextFormField(
+                hintText: "كلمة المرور",
+                controller: _passwordController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "من فضلك أدخل كلمة المرور";
+                  }
+                  return null;
+                },
+                prefixIcon: Icons.lock,
+                keyboardType: TextInputType.visiblePassword,
+                isPassword: true,
+              ),
+              SizedBox(height: 25),
+              Align(
+                alignment: .centerLeft,
+                child: Text(
+                  "هل نسيت كلمة المرور ؟",
+                  style: TextStyle(
+                    fontFamily: "Tajawal",
+                    fontSize: 16,
+                    fontWeight: .bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(height: 40),
+
+              BlocBuilder<AuthBloc, AuthState>(
+                builder: (context, state) {
+                  final isLoading = state is LoginLoadingState;
+
+                  return CustomElevatedButton(
+                    text: "تسجيل الدخول",
+                    isLoading: isLoading,
+                    onTap: isLoading
+                        ? null
+                        : () {
+                            if (_formKey.currentState!.validate()) {
+                              context.read<AuthBloc>().add(
+                                LoginEvent(
+                                  UserDataClass(
+                                    email: _emailController.text.trim(),
+                                    password: _passwordController.text.trim(),
+                                  ),
+                                ),
+                              );
+                            }
+                          },
                   );
                 },
-            ),
-          ],
+              ),
+              SizedBox(height: 10),
+              BlocBuilder<AuthBloc, AuthState>(
+                builder: (context, state) {
+                  final isLoading = state is LoginWithGoogleLoadingState;
+
+                  return CustomElevatedButton(
+                    text: "التسجيل باستخدام جوجل",
+                    isLoading: isLoading,
+                    onTap: isLoading
+                        ? null
+                        : () {
+                            context.read<AuthBloc>().add(
+                              LoginWithGoogleEvent(),
+                            );
+                          },
+                  );
+                },
+              ),
+              SizedBox(height: 10),
+
+              CustomRichText(
+                textOne: "ليس لديك حساب ؟   ",
+                textTwo: "إنشاء حساب",
+                onTapTextTwo: TapGestureRecognizer()
+                  ..onTap = () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => RegisterScreen()),
+                    );
+                  },
+              ),
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  Future<void> _login(UserDataClass user) async {
-    UserCredential? userCredential = await FirebaseAuthServices.login(user);
-    userCredential == null
-        ? ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text("Login Failed"),
-              backgroundColor: Colors.red,
-            ),
-          )
-        : ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text("Login Successfully"),
-              backgroundColor: Colors.green,
-            ),
-          );
   }
 }

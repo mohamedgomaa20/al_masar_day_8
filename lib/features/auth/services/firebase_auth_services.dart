@@ -6,33 +6,29 @@ import '../data/models/user_data_class.dart';
 class FirebaseAuthServices {
   static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  static Future<UserCredential?> login(UserDataClass userData) async {
+  static Future<void> login(UserDataClass userData) async {
     try {
-      UserCredential userCredential = await _firebaseAuth
-          .signInWithEmailAndPassword(
-            email: userData.email,
-            password: userData.password,
-          );
-      return userCredential;
+      await _firebaseAuth.signInWithEmailAndPassword(
+        email: userData.email,
+        password: userData.password,
+      );
     } on FirebaseAuthException catch (e) {
-      return null;
+      throw Exception(_handleAuthError(e));
     } catch (e) {
-      return null;
+      throw Exception("Something went wrong");
     }
   }
 
-  static Future<UserCredential?> register(UserDataClass userData) async {
+  static Future<void> register(UserDataClass userData) async {
     try {
-      UserCredential userCredential = await _firebaseAuth
-          .createUserWithEmailAndPassword(
-            email: userData.email,
-            password: userData.password,
-          );
-      return userCredential;
+      await _firebaseAuth.createUserWithEmailAndPassword(
+        email: userData.email,
+        password: userData.password,
+      );
     } on FirebaseAuthException catch (e) {
-      return null;
+      throw Exception(_handleAuthError(e));
     } catch (e) {
-      return null;
+      throw Exception("Something went wrong");
     }
   }
 
@@ -40,13 +36,13 @@ class FirebaseAuthServices {
     try {
       await _firebaseAuth.signOut();
     } on FirebaseAuthException catch (e) {
-      print(e.toString());
+      throw Exception(_handleAuthError(e));
     } catch (e) {
-      print(e.toString());
+      throw Exception("Something went wrong");
     }
   }
 
-  static Future<UserCredential?> signInWithGoogle() async {
+  static Future<void> signInWithGoogle() async {
     try {
       await GoogleSignIn.instance.initialize(
         serverClientId:
@@ -62,10 +58,30 @@ class FirebaseAuthServices {
         idToken: googleAuth.idToken,
       );
 
-      return await FirebaseAuth.instance.signInWithCredential(credential);
+      await FirebaseAuth.instance.signInWithCredential(credential);
     } catch (e) {
-      print(e.toString());
-      return null;
+      throw Exception("Something went wrong");
+    }
+  }
+
+  static String _handleAuthError(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'user-not-found':
+        return 'Email not found';
+      case 'wrong-password':
+        return 'Wrong password';
+      case 'invalid-email':
+        return 'Invalid email format';
+      case 'user-disabled':
+        return 'User account disabled';
+      case 'too-many-requests':
+        return 'Too many attempts, try later';
+      case 'weak-password':
+        return 'Password is too weak';
+      case 'email-already-in-use':
+        return 'Email already in use';
+      default:
+        return 'Authentication error';
     }
   }
 }
