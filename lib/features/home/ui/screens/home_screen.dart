@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/themes/theme_manager/theme_manager_bloc.dart';
 import '../widgets/categories_widget.dart';
 import '../widgets/header_widget.dart';
 import '../widgets/properties_list_widget.dart';
@@ -6,14 +8,7 @@ import '../widgets/search_bar_widget.dart';
 import '../widgets/section_title_widget.dart';
 
 class HomeScreen extends StatelessWidget {
-  final bool isDark;
-  final VoidCallback toggleTheme;
-
-  const HomeScreen({
-    super.key,
-    required this.isDark,
-    required this.toggleTheme,
-  });
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +31,21 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 10),
               const PropertiesListWidget(),
               const SizedBox(height: 20),
-              SwitchListTile(
-                value: isDark,
-                onChanged: (_) => toggleTheme(),
-                title: Text(
-                  "Dark Mode",
-                  style: TextStyle(color: colors.onSurface),
-                ),
+              BlocBuilder<ThemeManagerBloc, ThemeManagerState>(
+                builder: (context, state) {
+                  final isDarkMode = state is DarkModeState;
+                  print("------------------ $isDarkMode ------------------");
+                  return SwitchListTile(
+                    value: isDarkMode,
+                    onChanged: (_) {
+                      context.read<ThemeManagerBloc>().add(ToggleThemeEvent());
+                    },
+                    title: Text(
+                      "Dark Mode",
+                      style: TextStyle(color: colors.onSurface),
+                    ),
+                  );
+                },
               ),
             ],
           ),
