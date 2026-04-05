@@ -110,11 +110,11 @@ class _LoginTextFieldAndButtonWidgetState
                           ),
                         );
                         setState(() => _isLoading = false);
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomeScreen()),
-                          (route) => false,
-                        );
+                        // Navigator.pushAndRemoveUntil(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => HomeScreen()),
+                        //   (route) => false,
+                        // );
                       }
                     },
             ),
@@ -129,11 +129,11 @@ class _LoginTextFieldAndButtonWidgetState
                       FocusScope.of(context).unfocus();
                       await FirebaseAuthServices.signInWithGoogle();
                       setState(() => _isLoadingWithGoogle = false);
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
-                        (route) => false,
-                      );
+                      // Navigator.pushAndRemoveUntil(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => HomeScreen()),
+                      //   (route) => false,
+                      // );
                     },
             ),
             SizedBox(height: 10),

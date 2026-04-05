@@ -121,11 +121,11 @@ class _RegisterTextFieldAndButtonWidgetState
                           ),
                         );
                         setState(() => _isLoading = false);
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomeScreen()),
-                          (route) => false,
-                        );
+                        // Navigator.pushAndRemoveUntil(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => HomeScreen()),
+                        //   (route) => false,
+                        // );
                       }
                     },
             ),

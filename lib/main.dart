@@ -12,8 +12,21 @@ void main() async {
   runApp(const ALMasarApp());
 }
 
-class ALMasarApp extends StatelessWidget {
+class ALMasarApp extends StatefulWidget {
   const ALMasarApp({super.key});
+
+  @override
+  State<ALMasarApp> createState() => _ALMasarAppState();
+}
+
+class _ALMasarAppState extends State<ALMasarApp> {
+  bool isDark = false;
+
+  void toggleTheme() {
+    setState(() {
+      isDark = !isDark;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +34,8 @@ class ALMasarApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: .dark,
-      home: HomeScreen(),
+      themeMode: isDark ? .dark : .light,
+      home: HomeScreen(toggleTheme: toggleTheme, isDark: isDark),
     );
   }
 }

@@ -6,27 +6,44 @@ import '../widgets/search_bar_widget.dart';
 import '../widgets/section_title_widget.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final bool isDark;
+  final VoidCallback toggleTheme;
+
+  const HomeScreen({
+    super.key,
+    required this.isDark,
+    required this.toggleTheme,
+  });
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
+
     return Scaffold(
       backgroundColor: colors.surface,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
-            children: const [
-              HeaderWidget(),
-              SizedBox(height: 20),
-              SearchBarWidget(),
-              SizedBox(height: 20),
-              CategoriesWidget(),
-              SizedBox(height: 20),
-              SectionTitleWidget(title: "Featured Properties"),
-              SizedBox(height: 10),
-              PropertiesListWidget(),
+            children: [
+              const HeaderWidget(),
+              const SizedBox(height: 20),
+              const SearchBarWidget(),
+              const SizedBox(height: 20),
+              const CategoriesWidget(),
+              const SizedBox(height: 20),
+              const SectionTitleWidget(title: "Featured Properties"),
+              const SizedBox(height: 10),
+              const PropertiesListWidget(),
+              const SizedBox(height: 20),
+              SwitchListTile(
+                value: isDark,
+                onChanged: (_) => toggleTheme(),
+                title: Text(
+                  "Dark Mode",
+                  style: TextStyle(color: colors.onSurface),
+                ),
+              ),
             ],
           ),
         ),

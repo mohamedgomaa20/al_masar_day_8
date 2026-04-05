@@ -55,7 +55,6 @@ class AppTheme {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     ),
 
-
     listTileTheme: ListTileThemeData(
       titleTextStyle: TextStyle(
         fontSize: 16,
