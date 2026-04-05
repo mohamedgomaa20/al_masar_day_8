@@ -2,16 +2,12 @@ import 'package:al_masar_day_8/features/auth/data/models/user_data_class.dart';
 import 'package:al_masar_day_8/features/auth/services/firebase_auth_services.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
-
 part 'auth_event.dart';
-
 part 'auth_state.dart';
-
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial()) {
     on<LoginEvent>((event, emit) async {
       emit(LoginLoadingState());
-
       try {
         await FirebaseAuthServices.login(event.user);
         emit(LoginSuccessState());
@@ -22,7 +18,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<RegisterEvent>((event, emit) async {
       emit(RegisterLoadingState());
-
       try {
         await FirebaseAuthServices.register(event.user);
         emit(RegisterSuccessState());
