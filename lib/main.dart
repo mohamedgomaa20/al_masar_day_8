@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'features/splash/ui/screens/splash_screen.dart';
+import 'core/themes/app_theme.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -19,16 +19,9 @@ class ALMasarApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: "Tajawal", brightness: .dark),
-
-      locale: Locale("ar"),
-      supportedLocales: [Locale("ar"), Locale("en")],
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: .dark,
       home: HomeScreen(),
     );
   }
