@@ -7,6 +7,7 @@ part 'theme_manager_state.dart';
 
 class ThemeManagerBloc extends Bloc<ThemeManagerEvent, ThemeManagerState> {
   ThemeManagerBloc() : super(DarkModeState()) {
+
     on<ToggleThemeEvent>((event, emit) {
       if (state is DarkModeState) {
         emit(LightModeState());
@@ -14,5 +15,6 @@ class ThemeManagerBloc extends Bloc<ThemeManagerEvent, ThemeManagerState> {
         emit(DarkModeState());
       }
     });
+
   }
 }

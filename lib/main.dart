@@ -1,5 +1,6 @@
- import 'package:al_masar_day_8/features/home/ui/screens/home_screen.dart';
-import 'package:al_masar_day_8/features/welcome/ui/screens/welcome_screen.dart';
+import 'package:al_masar_day_8/features/counter/logic/counter_bloc/counter_bloc.dart';
+import 'package:al_masar_day_8/features/counter/ui/screens/counter_screen.dart';
+import 'package:al_masar_day_8/features/properties/logic/properties_bloc/properties_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +18,7 @@ void main() async {
       providers: [
         BlocProvider(create: (_) => AuthBloc()),
         BlocProvider(create: (_) => ThemeManagerBloc()),
+        BlocProvider(create: (_) => PropertiesBloc()),
       ],
       child: const ALMasarApp(),
     ),
@@ -25,7 +27,6 @@ void main() async {
 
 class ALMasarApp extends StatelessWidget {
   const ALMasarApp({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +37,11 @@ class ALMasarApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          themeMode:  .light,
-          // themeMode: isDarkMode ? .dark : .light,
-          home: WelcomeScreen(),
+          themeMode: .dark,
+          home: BlocProvider(
+            create: (context) => CounterBloc(),
+            child: CounterScreen(),
+          ),
         );
       },
     );
